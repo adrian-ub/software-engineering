@@ -1,0 +1,11 @@
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\dto\RequestTeacherDTO.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\repository\TeacherRepository.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\service\implementation\TeacherService.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\entities\Teacher.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\TeacherApplication.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\dto\ResponseListTeacherDTO.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\ModelMapperConfig.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\dto\ResponseTeacherDTO.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\mapper\TeacherMapper.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\controller\TeacherController.java
+C:\Users\jaime.barros\Documents\MYSQL\ms-teacher\src\main\java\com\ms\teacher\service\interfaces\ITeacherService.java

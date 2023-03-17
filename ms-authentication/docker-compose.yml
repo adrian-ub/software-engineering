@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: authentication
+    networks:
+      - authentication-network
+
+  api:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
+    depends_on:
+      - postgres
+    networks:
+      - authentication-network
+    restart: always
+
+networks:
+  authentication-network:

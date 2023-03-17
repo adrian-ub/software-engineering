@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ms.teacher.TeacherApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.67 s - in com.ms.teacher.TeacherApplicationTests

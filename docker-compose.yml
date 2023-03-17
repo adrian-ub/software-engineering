@@ -1,0 +1,136 @@
+version: "3"
+services:
+  auth-db:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: authentication
+
+  auth-ms:
+    stdin_open: true
+    build:
+      context: ./ms-authentication
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=authentication
+      - POSTGRES_HOST=auth-db
+      - POSTGRES_PORT=5432
+      - DATABASE_URL=postgres://postgres:123@auth-db:5432/authentication?schema=public
+    ports:
+      - 3001:3000
+    depends_on:
+      - auth-db
+    restart: always
+
+  upload-db:
+    image: mongo:6.0.5
+    ports:
+      - 27017:27017
+
+  upload-ms:
+    stdin_open: true
+    build:
+      context: ./ms-upload
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - DATABASE_HOST=upload-db
+      - DATABASE_PORT=27017
+    depends_on:
+      - upload-db
+    restart: always
+
+  student-db:
+    image: mysql:8.0.32
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=student_db
+
+  student-ms:
+    stdin_open: true
+    build:
+      context: ./ms-student
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=student-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1234
+    ports:
+      - 9002:9000
+    depends_on:
+      - student-db
+    restart: always
+
+  teacher-db:
+    image: mysql:8.0.32
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=teacher_db
+
+  teacher-ms:
+    stdin_open: true
+    build:
+      context: ./ms-teacher
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=teacher-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1234
+    ports:
+      - 9001:9001
+
+    depends_on:
+      - teacher-db
+    restart: always
+
+  attendance-ms:
+    stdin_open: true
+    build:
+      context: ./ms-attendance
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=student-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1234
+    ports:
+      - 9000:9000
+    depends_on:
+      - student-db
+    restart: always
+
+  api-gateway:
+    stdin_open: true
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    environment:
+      - MS_AUTH=http://auth-ms:3000
+      - MS_TEACHER=http://teacher-ms:9001
+      - MS_STUDENT=http://student-ms:9000
+      - MS_ATTENDANCE=http://attendance-ms:9000
+      - MS_UPLOAD=http://upload-ms:3000
+    depends_on:
+      - auth-ms
+      - upload-ms
+      - student-ms
+      - teacher-ms
+      - attendance-ms
+    restart: always
+
+networks:
+  default:
