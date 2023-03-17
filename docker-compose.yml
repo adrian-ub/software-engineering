@@ -65,7 +65,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=1234
     ports:
-      - 9002:9000
+      - 9000:9000
     depends_on:
       - student-db
     restart: always
@@ -106,7 +106,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=1234
     ports:
-      - 9000:9000
+      - 9002:9002
     depends_on:
       - student-db
     restart: always
@@ -122,7 +122,7 @@ services:
       - MS_AUTH=http://auth-ms:3000
       - MS_TEACHER=http://teacher-ms:9001
       - MS_STUDENT=http://student-ms:9000
-      - MS_ATTENDANCE=http://attendance-ms:9000
+      - MS_ATTENDANCE=http://attendance-ms:9002
       - MS_UPLOAD=http://upload-ms:3000
     depends_on:
       - auth-ms
