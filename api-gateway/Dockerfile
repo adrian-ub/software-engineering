@@ -22,4 +22,6 @@ WORKDIR /app
 COPY --from=build /app/dist/ ./dist/
 COPY --from=build /app/node_modules ./node_modules
 
+RUN mkdir -p /app/upload
+
 CMD [ "node", "dist/main.js" ]

@@ -17,12 +17,12 @@ export class UploadFileService {
 
     return new Promise(async (resolve) => {
       createReadStream()
-        .pipe(createWriteStream(join(process.cwd(), 'src', 'upload', filename)))
+        .pipe(createWriteStream(join(process.cwd(), 'upload', filename)))
         .on('finish', async () => {
           const form = new FormData();
           form.append(
             'myImage',
-            FsCreateReadStream(join(process.cwd(), 'src', 'upload', filename)),
+            FsCreateReadStream(join(process.cwd(), 'upload', filename)),
           );
 
           console.log(form);
