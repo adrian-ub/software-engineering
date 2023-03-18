@@ -6,7 +6,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 const graphqlUploadExpress = require('graphql-upload/graphqlUploadExpress.js');
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.use(graphqlUploadExpress());
