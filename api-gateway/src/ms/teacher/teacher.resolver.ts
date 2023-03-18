@@ -6,7 +6,7 @@ import { UpdateTeacherInput } from './dto/update-teacher.input';
 
 @Resolver(() => Teacher)
 export class TeacherResolver {
-  constructor(private readonly teacherService: TeacherService) {}
+  constructor(private readonly teacherService: TeacherService) { }
 
   @Mutation(() => Teacher)
   createTeacher(

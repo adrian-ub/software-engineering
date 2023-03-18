@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices/client';
 import { GraphQLError } from 'graphql';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { endpoints } from 'src/config';
@@ -13,7 +14,8 @@ export class TeacherService {
   constructor(
     private readonly httpService: HttpService,
     private readonly authenticationService: AuthenticationService,
-  ) {}
+    @Inject('TEACHER_SERVICE') private clientTeacher: ClientProxy
+  ) { }
 
   async create(createTeacherInput: CreateTeacherInput) {
     try {
@@ -25,22 +27,10 @@ export class TeacherService {
         password,
         confirmationPassword,
       });
+      const userTeacher = { ...createTeacherInput, idUser: '11' };
+      const messageTeacher = await this.clientTeacher.send({ cmd: 'studentCreate' }, JSON.stringify(userTeacher)).subscribe();
 
-      const { data } = await firstValueFrom(
-        this.httpService.post<TeacherResponse>(
-          `${endpoints.msTeacher}/teacher`,
-          {
-            ...teacher,
-            idUser: userRegistered.userId,
-          },
-        ),
-      );
-
-      if (data.success) {
-        return { ...data.teacher, accessToken: userRegistered.accessToken };
-      }
-      const message = data.teacher as unknown as string;
-      throw new GraphQLError(message, { extensions: { code: 404 } });
+      return createTeacherInput;
     } catch (error) {
       throw new GraphQLError(error, { extensions: { code: 404 } });
     }
