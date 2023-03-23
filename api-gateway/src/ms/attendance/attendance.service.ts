@@ -15,7 +15,7 @@ export class AttendanceService {
     try {
       const isValidTeacher = await lastValueFrom(
         this.httpService.get(
-          `${endpoints.msTeacher}/attendance/${createAttendanceInput.idTeacher}`,
+          `${endpoints.msTeacher}/teacher/${createAttendanceInput.idTeacher}`,
         ),
       );
       const respTeacher = isValidTeacher.data;
