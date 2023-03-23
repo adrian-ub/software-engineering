@@ -28,7 +28,7 @@ export class TeacherService {
         confirmationPassword,
       });
       const userTeacher = { ...createTeacherInput, idUser: '11' };
-      const messageTeacher = await this.clientTeacher.send({ cmd: 'studentCreate' }, JSON.stringify(userTeacher)).subscribe();
+      const messageTeacher = await this.clientTeacher.send({ cmd: 'teacherCreate' }, JSON.stringify(userTeacher)).subscribe();
 
       return createTeacherInput;
     } catch (error) {
