@@ -50,6 +50,7 @@ specifiers:
   jest: ^29.4.1
   jest-environment-jsdom: ^29.4.1
   jest-preset-angular: ~13.0.0
+  ngx-toastr: ^16.1.0
   nx: 15.8.7
   postcss: ^8.4.5
   prettier: ^2.6.2
@@ -80,6 +81,7 @@ dependencies:
   angular-svg-icon: 15.0.0_oylblkkh3bekahg6pfqcwrsdua
   apollo-angular: 4.2.1_jocwj6r3pjpwhvh5cnphaxrozq
   graphql: 16.6.0
+  ngx-toastr: 16.1.0_vfi6yhsrbsdopqidhgngwcssn4
   rxjs: 7.8.0
   tslib: 2.5.0
   zone.js: 0.12.0
@@ -103,7 +105,7 @@ devDependencies:
   '@nrwl/jest': 15.8.7_l4x2r2svr6eycijcaf5n2ggloa
   '@nrwl/js': 15.8.7_ezoeqglmlu35vldo4ojpubhjcm
   '@nrwl/linter': 15.8.7_ezoeqglmlu35vldo4ojpubhjcm
-  '@nrwl/nx-cloud': 15.2.3
+  '@nrwl/nx-cloud': 15.3.2
   '@nrwl/workspace': 15.8.7_xbutml5teg6536gsdu4z5mzgvm
   '@schematics/angular': 15.2.4
   '@types/jest': 29.5.0
@@ -4390,8 +4392,8 @@ packages:
       - supports-color
       - typescript
 
-  /@nrwl/nx-cloud/15.2.3:
-    resolution: {integrity: sha512-odbLJVhANnjXhUvHOeKGfMeK6hrC8poa/y1p6Wj1E5K8xbECMlz/kUWYjcbkEFcSCGyjCednDZCirhT9oy3RVQ==}
+  /@nrwl/nx-cloud/15.3.2:
+    resolution: {integrity: sha512-fga4duqcrkyT3djQpyRp8god3trb18hb+Tv0CYRrCcdNDHhzb6LOrxnenrFsjPjt38hyCdyu/ZYmHI/lQXyhAw==}
     hasBin: true
     dependencies:
       axios: 0.21.4
@@ -10521,6 +10523,19 @@ packages:
 
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  /ngx-toastr/16.1.0_vfi6yhsrbsdopqidhgngwcssn4:
+    resolution: {integrity: sha512-jMnkauggRE8264vR4NtOgK3QI7zmufO3Z7wrkg3j7A7ZVpkCKDXgklsAZM9aiHxDyttM2K+Na6a6L004uPeRKA==}
+    peerDependencies:
+      '@angular/common': '>=14.0.0-0'
+      '@angular/core': '>=14.0.0-0'
+      '@angular/platform-browser': '>=14.0.0-0'
+    dependencies:
+      '@angular/common': 15.2.3_yv4eghcwnjjjinig76nv36q23e
+      '@angular/core': 15.2.3_rxjs@7.8.0+zone.js@0.12.0
+      '@angular/platform-browser': 15.2.3_jyzqcyxaf6ecoj3jdgijxxiksu
+      tslib: 2.5.0
+    dev: false
 
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}

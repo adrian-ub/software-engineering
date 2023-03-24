@@ -13,11 +13,18 @@ import { InMemoryCache } from '@apollo/client/core';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-    importProvidersFrom(AngularSvgIconModule.forRoot(), ApolloModule),
+    importProvidersFrom(
+      AngularSvgIconModule.forRoot(),
+      ApolloModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
+    ),
     provideHttpClient(),
     {
       provide: APOLLO_OPTIONS,

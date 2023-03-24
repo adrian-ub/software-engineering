@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 import { GraphqlSDK } from 'src/app/core/services/graphql';
 
@@ -12,6 +14,8 @@ import { GraphqlSDK } from 'src/app/core/services/graphql';
 export class CreateAttendanceComponent {
   private sdkGraphql = inject(GraphqlSDK);
   private fb = inject(FormBuilder);
+  private toastr = inject(ToastrService);
+  private router = inject(Router);
   protected form = this.fb.nonNullable.group({
     student: [''],
     teacher: [''],
@@ -35,7 +39,7 @@ export class CreateAttendanceComponent {
 
     console.log(date, student, teacher);
 
-    this.sdkGraphql
+    const attendanceSubscription = this.sdkGraphql
       .checkAttendanceMutation({
         id: Number(student),
         attendance: {
@@ -43,8 +47,17 @@ export class CreateAttendanceComponent {
           idTeacher: Number(teacher),
         },
       })
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe({
+        next: (data) => {
+          this.toastr.success('Asistencia creada correctamente');
+          this.router.navigate(['/dashboard/attendances']);
+        },
+        error: (error) => {
+          this.toastr.error(error.message);
+        },
+        complete: () => {
+          attendanceSubscription.unsubscribe();
+        },
       });
   }
 }

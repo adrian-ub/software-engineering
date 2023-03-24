@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,6 +13,8 @@ import { environment } from 'src/environments/environment';
 export class CreateStudentComponent {
   private fb = new FormBuilder();
   private http = inject(HttpClient);
+  private toastr = inject(ToastrService);
+  private router = inject(Router);
   photo!: File;
   protected form = this.fb.nonNullable.group({
     birthdate: ['', Validators.required],
@@ -76,12 +80,23 @@ export class CreateStudentComponent {
     fd.append('map', JSON.stringify(_map));
     fd.append('photoUrl', this.photo, this.photo.name);
 
-    this.http
+    const studentSubscription = this.http
       .post(environment.graphqlEndpoint, fd, {
         headers: {
           'Apollo-Require-Preflight': 'true',
         },
       })
-      .subscribe();
+      .subscribe({
+        next: (data) => {
+          this.toastr.success('Estudiante creado correctamente');
+          this.router.navigate(['/dashboard/students']);
+        },
+        complete: () => {
+          studentSubscription.unsubscribe();
+        },
+        error: (error) => {
+          this.toastr.error(error.message);
+        },
+      });
   }
 }

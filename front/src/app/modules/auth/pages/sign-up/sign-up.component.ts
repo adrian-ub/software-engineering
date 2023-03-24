@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { GraphqlSDK } from 'src/app/core/services/graphql';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'front-sign-up',
@@ -20,6 +21,7 @@ export class SignUpComponent {
   private graphqlSdk = inject(GraphqlSDK);
   private fb = new FormBuilder();
   private router = inject(Router);
+  private toastr = inject(ToastrService);
   protected form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     confirmationPassword: ['', Validators.required],
@@ -45,10 +47,14 @@ export class SignUpComponent {
       })
       .subscribe({
         next: (data) => {
+          this.toastr.success('Usuario creado correctamente');
           this.router.navigate(['/']);
         },
         complete: () => {
           subscribeCreateTeacher.unsubscribe();
+        },
+        error: (error) => {
+          this.toastr.error(error.message);
         },
       });
   }

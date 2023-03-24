@@ -1,13 +1,14 @@
+import { NgClass, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
-  Validators,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { NgClass, NgIf } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ToastrService } from 'ngx-toastr';
 import { GraphqlSDK } from 'src/app/core/services/graphql';
 
 @Component({
@@ -28,6 +29,7 @@ export class SignInComponent {
   private _formBuilder = new FormBuilder();
   private _router = inject(Router);
   private graphqlSdk = inject(GraphqlSDK);
+  private toastr = inject(ToastrService);
   protected form = this._formBuilder.nonNullable.group({
     username: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -55,10 +57,14 @@ export class SignInComponent {
       })
       .subscribe({
         next: (data) => {
+          this.toastr.success('¡Bienvenido!');
           this._router.navigate(['/']);
         },
         complete: () => {
           subscribeLogin.unsubscribe();
+        },
+        error: (error) => {
+          this.toastr.error(error.message, 'Error');
         },
       });
   }
