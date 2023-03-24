@@ -27,10 +27,10 @@ export class TeacherService {
         password,
         confirmationPassword,
       });
-      const userTeacher = { ...createTeacherInput, idUser: '11' };
+      const userTeacher = { ...createTeacherInput, idUser: userRegistered.userId };
       const messageTeacher = await this.clientTeacher.send({ cmd: 'teacherCreate' }, JSON.stringify(userTeacher)).subscribe();
 
-      return createTeacherInput;
+      return userTeacher;
     } catch (error) {
       throw new GraphQLError(error, { extensions: { code: 404 } });
     }
