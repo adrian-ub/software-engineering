@@ -1,0 +1,48 @@
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+  <div
+    class="flex h-[420px] flex-col rounded-lg bg-white p-8 dark:bg-night-700"
+  >
+    <ng-container *ngIf="students$ | async as students">
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">Documento</th>
+                    <th scope="col" class="px-6 py-4">Primer Nombre</th>
+                    <th scope="col" class="px-6 py-4">Segundo Nombre</th>
+                    <th scope="col" class="px-6 py-4">Primer Apellido</th>
+                    <th scope="col" class="px-6 py-4">Segundo Apellido</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let student of students">
+                    <tr class="border-b dark:border-neutral-500">
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{ student.document }}
+                      </td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{ student.firstName }}
+                      </td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{ student.secondName }}
+                      </td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{ student.lastName }}
+                      </td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{ student.lastNameTwo }}
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

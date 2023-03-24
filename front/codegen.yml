@@ -1,0 +1,14 @@
+schema: 'http://localhost:4000/graphql'
+overwrite: true
+documents:
+  - 'http://localhost:4000/graphql':
+      loader: ./operationsFromSchemaGenerator.js
+generates:
+  src/app/core/services/graphql.ts:
+    config:
+      sdkClass: true
+      serviceName: 'GraphqlSDK'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'

@@ -1,0 +1,191 @@
+<div class="my-10 space-y-6" [formGroup]="form">
+  <div class="text-center">
+    <h2 class="mb-1 text-3xl font-semibold text-gray-700 dark:text-white">
+      <span class="text-primary-500">¡</span> Registrarse
+      <span class="text-primary-500">!</span>
+    </h2>
+    <p class="text-sm text-gray-400 dark:text-night-200">Crea un profesor</p>
+  </div>
+
+  <div class="space-y-3 text-left">
+    <div class="relative">
+      <input
+        type="text"
+        id="email"
+        class="peer block"
+        placeholder=" "
+        formControlName="username"
+      />
+      <label
+        for="email"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Correo electrónico
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="password"
+        id="password"
+        class="peer block"
+        placeholder=" "
+        formControlName="password"
+      />
+      <label
+        for="password"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-600 dark:bg-night-700 dark:text-night-200"
+      >
+        Contraseña
+      </label>
+      <span
+        class="absolute top-2.5 right-5 cursor-pointer text-gray-400 dark:text-night-300"
+      >
+        <svg-icon src="assets/icons/outline/eye-off.svg" [svgClass]="'h-5 w-5'">
+        </svg-icon>
+        <svg-icon
+          src="assets/icons/outline/eye.svg"
+          [svgClass]="'h-5 w-5 hidden'"
+        >
+        </svg-icon>
+      </span>
+    </div>
+
+    <span class="text-xs text-gray-400 dark:text-night-300">
+      Use 8 o más caracteres.
+    </span>
+
+    <div class="relative">
+      <input
+        type="password"
+        id="confirm-password"
+        class="peer block"
+        placeholder=" "
+        formControlName="confirmationPassword"
+      />
+      <label
+        for="confirm-password"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-600 dark:bg-night-700 dark:text-night-200"
+      >
+        Confirmar contraseña
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="date"
+        id="birthdate"
+        class="peer block"
+        placeholder=" "
+        formControlName="birthdate"
+      />
+      <label
+        for="birthdate"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Fecha de nacimiento
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        id="document"
+        class="peer block"
+        placeholder=" "
+        formControlName="document"
+      />
+      <label
+        for="document"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Numero de documento
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        id="firstName"
+        class="peer block"
+        placeholder=" "
+        formControlName="firstName"
+      />
+      <label
+        for="firstName"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Primer nombre
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        id="secondName"
+        class="peer block"
+        placeholder=" "
+        formControlName="secondName"
+      />
+      <label
+        for="secondName"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Segundo nombre
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        id="lastName"
+        class="peer block"
+        placeholder=" "
+        formControlName="lastName"
+      />
+      <label
+        for="lastName"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Apellido
+      </label>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        id="lastNameTwo"
+        class="peer block"
+        placeholder=" "
+        formControlName="lastNameTwo"
+      />
+      <label
+        for="lastNameTwo"
+        class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary-500 dark:bg-night-700 dark:text-night-200"
+      >
+        Segundo Apellido
+      </label>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    type="button"
+    [disabled]="form.invalid"
+    (click)="register()"
+    class="group relative mb-10 flex w-full justify-center rounded-md border border-transparent bg-primary-500 py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 hover:bg-primary-400"
+  >
+    Registrarse
+  </button>
+
+  <!-- Sign-up -->
+  <div class="text-sm text-gray-400 dark:text-night-200">
+    ¿Ya tienes una cuenta?
+    <a
+      routerLink="/auth/sign-in"
+      class="text-primary-500 hover:text-primary-400"
+    >
+      Iniciar sesión
+    </a>
+  </div>
+</div>
