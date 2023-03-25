@@ -10,6 +10,17 @@ services:
       - 80:80
     restart: always
 
+  load-balancer:
+    build:
+      context: ./loadbalancer
+      dockerfile: Dockerfile
+    depends_on:
+      - student-ms
+      - student-ms-2
+    ports:
+      - 8082:80
+    restart: always
+
   front:
     build:
       context: ./front
@@ -88,6 +99,22 @@ services:
       - student-db
     restart: always
 
+  student-ms-2:
+    stdin_open: true
+    build:
+      context: ./ms-student
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=student-db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1234
+    ports:
+      - 9005:9000
+    depends_on:
+      - student-db
+    restart: always
+
   teacher-db:
     image: mysql:8.0.32
     ports:
@@ -139,7 +166,7 @@ services:
     environment:
       - MS_AUTH=http://auth-ms:3000
       - MS_TEACHER=http://teacher-ms:9001
-      - MS_STUDENT=http://student-ms:9000
+      - MS_STUDENT=http://load-balancer:80
       - MS_ATTENDANCE=http://attendance-ms:9002
       - MS_UPLOAD=http://upload-ms:3000
     depends_on:
@@ -148,6 +175,7 @@ services:
       - student-ms
       - teacher-ms
       - attendance-ms
+      - load-balancer
     restart: always
 
 networks:

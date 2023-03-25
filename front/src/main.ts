@@ -16,6 +16,17 @@ import { appRoutes } from './app/app.routes';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'ignore',
+  },
+  query: {
+    fetchPolicy: 'no-cache',
+    errorPolicy: 'all',
+  },
+};
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
@@ -32,8 +43,9 @@ bootstrapApplication(AppComponent, {
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'http://localhost:4000/graphql',
+            uri: 'http://localhost:80/graphql',
           }),
+          defaultOptions,
         };
       },
       deps: [HttpLink],
